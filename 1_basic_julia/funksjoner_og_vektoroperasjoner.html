@@ -1,0 +1,854 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Forelesning om Julia: Funksjoner, ‘.’ Operatoren og Nyttige Ting &#8212; INF100 Pensum</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_basic_julia/funksjoner_og_vektoroperasjoner';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Forelesning 28.09.2023: Derivasjon og Rekker i Julia" href="../2_matematiske_problemer/numerisk_derivasjon_og_rekker.html" />
+    <link rel="prev" title="Forelesning 21.09.2023" href="summering_og_2grads_forsettelse.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/julia-logo-color.png" class="logo__image only-light" alt="INF100 Pensum - Home"/>
+    <script>document.write(`<img src="../_static/julia-logo-color.png" class="logo__image only-dark" alt="INF100 Pensum - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    INF100 - Prinsipper i informasjonsbehandling
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Installasjon av programvare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../0_installasjon_av_programvare/Julia.html">Installasjon av Julia på din personlige PC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_installasjon_av_programvare/vscode.html">Installasjon av Visual Studio Code og Julia Extension</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../0_installasjon_av_programvare/pluto/pluto.html">Introduksjon til Pluto Notebooks i Julia</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../0_installasjon_av_programvare/pluto/brukepluto.html">Bruke Pluto Notebooks</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduksjon til Julia</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basicjulia.html">Grunnleggende Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indeksering_og_plotting.html">Indeksering, håndtering av lister, og plotting i Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summering_og_2grads.html">Summering, lister av tall, og løsning av 2. grads likninger (Forelesningen 14 sept 2023)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summering_og_2grads_forsettelse.html">Forelesning 21.09.2023</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Forelesning om Julia: Funksjoner, ‘.’ Operatoren og Nyttige Ting</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Matematiske Problemer</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2_matematiske_problemer/numerisk_derivasjon_og_rekker.html">Forelesning 28.09.2023: Derivasjon og Rekker i Julia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Praktiske Anvendelser</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3_praktiske_anvendelser/datainnlasting_og_analyse.html">Forelesning 12.10.2023: Datainnlasting og analyse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_praktiske_anvendelser/nullpunktsmetoder.html">Nullpunktsmetoder - Forelesning 26.10.2023</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../3_praktiske_anvendelser/eksponentiellvekst.html">Eksponentiell Vekst - Forelesning 09.11.2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_praktiske_anvendelser/numeriskintegrasjon.html">Numerisk Integrasjon - Forelesning 23.11.2023</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ukentlige Oppgaver</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/Oppgaver_Uke38.html">Oppgaver Uke 38</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/Oppgaver_Uke39.html">Oppgaver Uke 39</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/Oppgaver_Uke40.html">Oppgaver Uke 40 - Studieuke</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Løsninger til ukentlige oppgaver</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/oppgaver_uke38_losninger.html">Løsningsforslag Oppgaver Uke 38</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/oppgaver_uke39_losninger.html">Løsningsforslag Oppgaver Uke 39</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/oppgaver_uke40_losninger.html">Løsningsforslag Oppgaver Uke 40</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Obligatoriske Oppgaver</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/Oppgaver_Oblig1.html">Obligatorisk Oppgave 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../x_oppgaver/Oppgaver_Oblig2.html">Obligatorisk Oppgave 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Eksamen</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4_eksamen/Eksamensforberedelser.html">Eksamensforberedelser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_eksamen/Proveeksamen_losningsforslag.html">Prøveeksamen 1 - Løsningsforslag</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_eksamen/Proveeksamen_losningsforslag_2.html">Prøveeksamen 2 - Løsningsforslag</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/UlfIndahl/INF100" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UlfIndahl/INF100/issues/new?title=Issue%20on%20page%20%2F1_basic_julia/funksjoner_og_vektoroperasjoner.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/1_basic_julia/funksjoner_og_vektoroperasjoner.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Forelesning om Julia: Funksjoner, ‘.’ Operatoren og Nyttige Ting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-1-funksjoner-i-julia">Del 1: Funksjoner i Julia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-2-operatoren-i-julia">Del 2: ‘.’ Operatoren i Julia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nar-og-hvorfor-bruke">Når og Hvorfor Bruke ‘.’</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-3-nyttige-ting">Del 3:  Nyttige ting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gjett-tallet-spill">Gjett-tallet spill</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="forelesning-om-julia-funksjoner-operatoren-og-nyttige-ting">
+<h1>Forelesning om Julia: Funksjoner, ‘.’ Operatoren og Nyttige Ting<a class="headerlink" href="#forelesning-om-julia-funksjoner-operatoren-og-nyttige-ting" title="Link to this heading">#</a></h1>
+<section id="del-1-funksjoner-i-julia">
+<h2>Del 1: Funksjoner i Julia<a class="headerlink" href="#del-1-funksjoner-i-julia" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Vanlig funksjonsdefinisjon</span>
+<span class="k">function</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="k">end</span>
+
+<span class="c"># Bruk av funksjonen</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Anonyme funksjoner</span>
+<span class="n">add_anon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+
+<span class="c"># Bruk av anonym funksjon</span>
+<span class="n">add_anon</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">add_oneliner</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="n">y</span>
+
+<span class="n">add_oneliner</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="del-2-operatoren-i-julia">
+<h2>Del 2: ‘.’ Operatoren i Julia<a class="headerlink" href="#del-2-operatoren-i-julia" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Definere en vektor</span>
+<span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span>
+
+<span class="c"># Bruke .+ for elementvis addering</span>
+<span class="n">vec</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+ 2
+ 3
+ 4
+ 5
+</pre></div>
+</div>
+</div>
+</div>
+<section id="nar-og-hvorfor-bruke">
+<h3>Når og Hvorfor Bruke ‘.’<a class="headerlink" href="#nar-og-hvorfor-bruke" title="Link to this heading">#</a></h3>
+<p>Bruk ‘.’ for elementvis operasjoner på vektorer og matriser. Det er optimalisert for ytelse og lar deg utføre operasjoner uten å bruke løkker.</p>
+<p>Unngå ‘.’ hvis du ikke har behov for elementvis operasjoner, da det kan gjøre koden mindre lesbar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vec2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+ 5
+ 6
+ 7
+ 8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span><span class="w"> </span><span class="o">.+</span><span class="w"> </span><span class="n">vec2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+  6
+  8
+ 10
+ 12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vec2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+  6
+  8
+ 10
+ 12
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Spesielt nyttig når du har nested vektorer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">nested_vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Vector{Int64}}:
+ [1, 2, 3, 4]
+ [4, 5, 6, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span><span class="p">(</span><span class="n">nested_vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4-element Vector{Int64}:
+  5
+  7
+  9
+ 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span><span class="o">.</span><span class="p">(</span><span class="n">nested_vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-element Vector{Int64}:
+ 10
+ 22
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="del-3-nyttige-ting">
+<h2>Del 3:  Nyttige ting<a class="headerlink" href="#del-3-nyttige-ting" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Multiple return verdier</span>
+<span class="k">function</span><span class="w"> </span><span class="n">compute</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span>
+<span class="w">    </span><span class="n">diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">diff</span>
+<span class="k">end</span>
+
+<span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># List Comprehension</span>
+<span class="n">squared</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5-element Vector{Int64}:
+  1
+  4
+  9
+ 16
+ 25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Bruke en funksjon som heter dividetwovectors definert i en annen fil &quot;myfunction.jl&quot;</span>
+<span class="n">include</span><span class="p">(</span><span class="s">&quot;myfunction.jl&quot;</span><span class="p">)</span>
+
+<span class="c"># Følgende funksjon er definert i en myfunction.jl</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="s">function dividetwovectors(a,b)</span>
+<span class="s">    return a ./ b</span>
+<span class="s">end</span>
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="n">dividetwovectors</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Float64}:
+ 0.25
+ 0.4
+ 0.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gjett-tallet-spill">
+<h2>Gjett-tallet spill<a class="headerlink" href="#gjett-tallet-spill" title="Link to this heading">#</a></h2>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Importerer Random-biblioteket for å generere tilfeldige tall</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Random</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">gjett_tallet</span><span class="p">(</span><span class="n">max_tall</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># Genererer et tilfeldig tall mellom 0 og max_tall</span>
+<span class="w">    </span><span class="n">tilfeldig_tall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="n">max_tall</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Jeg tenker på et tall mellom 0 og </span><span class="si">$max_tall</span><span class="s">. Kan du gjette hva det er?&quot;</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c"># Initialiserer en variabel for å holde styr på antall forsøk</span>
+<span class="w">    </span><span class="n">antall_forsøk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="c"># Starter en uendelig løkke</span>
+<span class="w">        </span><span class="c"># Øker antall_forsøk med 1 for hver iterasjon</span>
+<span class="w">        </span><span class="n">antall_forsøk</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c"># Ber brukeren om å legge inn et gjetning</span>
+<span class="w">        </span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Din gjetning: &quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">gjetning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">readline</span><span class="p">())</span><span class="w">  </span><span class="c"># Konverterer inndata til heltall</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c"># Sjekker om gjetningen er korrekt</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">gjetning</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tilfeldig_tall</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Gratulerer! Du gjettet riktig etter </span><span class="si">$antall_forsøk</span><span class="s"> forsøk.&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">break</span><span class="w">  </span><span class="c"># Avslutter løkken</span>
+<span class="w">        </span><span class="k">elseif</span><span class="w"> </span><span class="n">gjetning</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tilfeldig_tall</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;For lavt! Prøv igjen.&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;For høyt! Prøv igjen.&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Kaller funksjonen med maksimalt tall som 100</span>
+<span class="n">gjett_tallet</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10",
+            path: "./1_basic_julia"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="summering_og_2grads_forsettelse.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Forelesning 21.09.2023</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_matematiske_problemer/numerisk_derivasjon_og_rekker.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Forelesning 28.09.2023: Derivasjon og Rekker i Julia</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-1-funksjoner-i-julia">Del 1: Funksjoner i Julia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-2-operatoren-i-julia">Del 2: ‘.’ Operatoren i Julia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nar-og-hvorfor-bruke">Når og Hvorfor Bruke ‘.’</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#del-3-nyttige-ting">Del 3:  Nyttige ting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gjett-tallet-spill">Gjett-tallet spill</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ulf Indahl
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
