@@ -1,6 +1,6 @@
 # INF100 - Prinsipper i informasjonsbehandling
 
-Denne Jupyter Booken skal inneholde alt av stoff for INF100 for høstsemesteret 2023.
+Denne Jupyter Booken skal inneholde alt av stoff for INF100 for høstsemesteret 2024.
 
 ## Status
 
@@ -14,7 +14,7 @@ Denne boken vil inneholde pensummateriale, veiledninger, og mer.
 
 ### Programvare
 
-* Julia (1.9.6) behøves med pakkene *MAT* og *Pluto*
+* Julia (1.10.5) behøves med pakkene *MAT* og *Pluto*
 	* Se Julia installasjon siden for en veiledning
 * Visual Studio Code med Julia extensions
 
