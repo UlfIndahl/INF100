@@ -8,9 +8,6 @@ parts:
     chapters:
     - file: 0_installasjon_av_programvare/Julia
     - file: 0_installasjon_av_programvare/vscode 
-    - file: 0_installasjon_av_programvare/pluto/pluto
-      sections:
-      - file: 0_installasjon_av_programvare/pluto/brukepluto
   - caption: Introduksjon til Julia
     chapters:
     - file: 1_basic_julia/basicjulia.ipynb
