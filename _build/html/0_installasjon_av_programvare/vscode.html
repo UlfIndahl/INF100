@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -468,27 +468,48 @@ document.write(`
 <h3>Mac (Både Intel og Apple Silicon):<a class="headerlink" href="#mac-bade-intel-og-apple-silicon" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Gå til <a class="reference external" href="https://code.visualstudio.com/Download">VS Code nedlastingsside</a>.</p></li>
-<li><p>Velg enten “Mac Universal” (for begge typer Mac) eller “Mac Intel” / “Mac ARM” basert på din Mac-type.</p></li>
-<li><p>Etter nedlasting, åpne <code class="docutils literal notranslate"><span class="pre">.zip</span></code>-filen for å ekstrahere VS Code.</p></li>
-<li><p>Dra VS Code-ikonet til “Programmer”-mappen på din Mac.</p></li>
+<li><p>Velg enten “Mac Universal” (for begge typer Mac) eller “Mac Intel” / “Mac Apple silicon” basert på din Mac-type.</p></li>
+<li><p>Etter nedlasting, åpne <code class="docutils literal notranslate"><span class="pre">.zip</span></code>-filen for å “pakke ut” VS Code.</p></li>
+<li><p>Dra så VS Code-ikonet til “Programmer”-mappen på din Mac.</p></li>
 </ol>
 </section>
 </section>
 <section id="installere-julia-extension">
 <h2>Installere Julia Extension<a class="headerlink" href="#installere-julia-extension" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Åpne Visual Studio Code.</p></li>
-<li><p>Klikk på ikonet som ser ut som firkanter (extensions) på venstre side.</p></li>
+<li><p>Åpne Visual Studio Code (VSC).</p></li>
+<li><p>Klikk på ikonet med 4 firkanter (extensions) i margen på venstre side av VSC.</p></li>
 </ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/vscodeextension.png"><img alt="vscodeextension" class="bg-primary mb-1 align-center" src="../_images/vscodeextension.png" style="width: 200px;" /></a>
+<!--
+```{image} ../images/vscodeextension.png
+:alt: vscodeextension
+:class: bg-primary mb-1
+:width: 200px
+:align: center
+```
+-->
 <ol class="arabic simple" start="3">
-<li><p>Søk etter “Julia” i søkefeltet.</p></li>
+<li><p>Skriv “Julia” i søkefeltet.</p></li>
 </ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/vscodejuliasearch.png"><img alt="extensionsearch" class="bg-primary mb-1 align-center" src="../_images/vscodejuliasearch.png" style="width: 400px;" /></a>
+<!--
+```{image} ../images/vscodejuliasearch.png
+:alt: extensionsearch
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+-->
 <ol class="arabic simple" start="4">
 <li><p>Klikk på “Install” på Julia extension som tilbys av “julialang”.</p></li>
 </ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/julialang.png"><img alt="extensionsearch" class="bg-primary mb-1 align-center" src="../_images/julialang.png" style="width: 400px;" /></a>
+<!--
+```{image} ../images/julialang.png
+:alt: extensionsearch
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+-->
 <ol class="arabic simple" start="5">
 <li><p>Etter installasjonen er ferdig, vil du være klar til å begynne å kode i Julia i VS Code!</p></li>
 </ol>
@@ -504,7 +525,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Åpne VS Code.</p></li>
 <li><p>Gå til “File” i menylinjen og velg “New File” (eller bruk hurtigtasten <code class="docutils literal notranslate"><span class="pre">Ctrl+N</span></code> på Windows, <code class="docutils literal notranslate"><span class="pre">Cmd+N</span></code> på Mac).</p></li>
-<li><p>Lagre filen med en <code class="docutils literal notranslate"><span class="pre">.jl</span></code>-endelse for å indikere at det er en Julia-kodefil. Du kan gjøre dette ved å gå til “File” &gt; “Save As” og deretter skrive inn et navn med <code class="docutils literal notranslate"><span class="pre">.jl</span></code>-endelsen (for eksempel <code class="docutils literal notranslate"><span class="pre">mitt_første_program.jl</span></code>).</p></li>
+<li><p>Lagre filen med et navn som har <code class="docutils literal notranslate"><span class="pre">.jl</span></code>-endelse for å indikere at det er en Julia-kodefil. Du kan gjøre dette ved å gå til “File” &gt; “Save As” og deretter skrive inn et navn med <code class="docutils literal notranslate"><span class="pre">.jl</span></code>-endelsen (for eksempel <code class="docutils literal notranslate"><span class="pre">mitt_første_program.jl</span></code>).</p></li>
 </ol>
 </section>
 <section id="hvordan-kjore-kodefiler-i-julia">
@@ -532,7 +553,14 @@ document.write(`
 <li><p>Med koden markert, trykk <code class="docutils literal notranslate"><span class="pre">Ctrl+Enter</span></code> (på Windows) eller <code class="docutils literal notranslate"><span class="pre">Cmd+Enter</span></code> (på Mac) for å sende den markerte koden til Julia REPL og kjøre den.</p></li>
 <li><p>Resultatet av koden vil vises i REPL-terminalen.</p></li>
 </ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/replexample.png"><img alt="replexample" class="bg-primary mb-1 align-center" src="../_images/replexample.png" style="width: 400px;" /></a>
+<!--
+```{image} ../images/replexample.png
+:alt: replexample
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+-->
 <p>Dette gir deg muligheten til å kjøre små biter av koden din interaktivt, noe som er spesielt nyttig for testing, feilsøking, eller når du utforsker nye biblioteker og funksjoner.</p>
 </section>
 <section id="hvorfor-skrive-kode-i-en-editor-og-utfore-den-i-en-terminal">
