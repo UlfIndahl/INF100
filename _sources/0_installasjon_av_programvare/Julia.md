@@ -16,27 +16,15 @@ kernelspec:
 
 Denne guiden vil hjelpe deg med å installere Julia på din PC, enten du bruker Windows eller Mac.
 
-## Før du starter
+### Før du starter
 
-Før du begynner installasjonen, er det viktig å vite hvilken type datamaskin du har. Hvis du bruker en Mac, må du finne ut om den er basert på Apple Silicon eller Intel.
+Før du begynner installasjonen, er det viktig å vite hva slags type datamaskin du har. 
 
-### Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:
-
-1. Klikk på Apple-ikonet øverst til venstre på skjermen.
-2. Velg "Om denne Macen".
-3. Under "Oversikt" vil du se en "Prosessor" eller "Chip"-detalj. Hvis det står "Intel", har du en Intel-basert Mac. Hvis det står "Apple M1" eller lignende, har du en Apple Silicon-basert Mac.
-
-```{image} ../images/m1mac.png
-:alt: m1mac
-:class: bg-primary mb-1
-:width: 400px
-:align: center
-```
 
 ## Installasjon på Windows
 
-1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/)
-2. Under "Current stable release" klikk på "Windows" og last ned den anbefalte versjonen for ditt system (vanligvis 64-bit). 
+1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/#current_stable_release)
+2. Under "Current stable release" klikk på "Windows" og last ned <span style="color:blue;">installer</span>-filen for ditt system (__som normalt er 64-bit__). 
 
 ```{image} ../images/julia_windows_64bit.png
 :alt: julia_windows64bit
@@ -64,33 +52,49 @@ Før du begynner installasjonen, er det viktig å vite hvilken type datamaskin d
 </div>
 
 
-## Installasjon på Mac (Intel)
+## Installasjon på Mac 
 
-1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/)
-2. Under "Current stable release" klikk på "macOS" og last ned den anbefalte versjonen for Intel Macs.
+__Hvis__ du bruker en __Mac__, må du __sjekke om__ den er basert på __Apple Silicon__ eller __Intel__.
+
+### Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:
+
+1. Klikk på Apple-ikonet øverst til venstre på skjermen.
+2. Velg "Om denne Macen".
+3. Under "Oversikt" vil du se en "Prosessor" eller "Chip"-detalj. Hvis det står "Intel", har du en Intel-basert Mac. Hvis det står "Apple M1" eller lignende, har du en Apple Silicon-basert Mac.
+
+```{image} ../images/m1mac.png
+:alt: m1mac
+:class: bg-primary mb-1
+:width: 400px
+:align: center
+```
+
+### Installasjon på Mac (Intel)
+
+1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/#current_stable_release)
+2. Under "Current stable release" klikk på "macOS" og last ned <span style="color:blue;">.dmg</span>-filen for den __anbefalte versjonen for Intel Macs__.
 3. Åpne den nedlastede .dmg-filen.
 4. Dra Julia-ikonet til Applications-mappen.
 
-## Installasjon på Mac (Apple Silicon)
+### Installasjon på Mac (Apple Silicon)
 
-1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/)
-2. Under "Current stable release" klikk på "macOS" og last ned den anbefalte versjonen for Apple Silicon Macs.
+1. Gå til Julia's offisielle nedlastingsside: [Julia Downloads](https://julialang.org/downloads/#current_stable_release)
+2. Under "Current stable release" klikk på "macOS" og last ned <span style="color:blue;">.dmg</span>-filen for den __anbefalte versjonen for Apple Silicon Macs__.
 3. Åpne den nedlastede .dmg-filen.
 4. Dra Julia-ikonet til Applications-mappen.
 
-## Etter installasjon
+## Etter installasjonen av Julia
 
-Når du har installert Julia, kan du starte programmet fra startmenyen (Windows) eller Applications-mappen (Mac). Du må også følge guiden for å installere Visual Studio Code og Julia Extensionen.
+Når du har installert Julia, kan du starte programmet fra startmenyen (Windows) eller Applications-mappen (Mac). Du må også følge guiden nedenfor for å installere __Visual Studio Code__ (VSC) med __Julia__ Extensionen som gjør at du enkelt kan behandle og kjøre Julia-programmer som du leser inn og/eller skriver i VSC.
 
-Etter å ha startet programmet må du skrive inn følgende kode for å installere pakkene MAT og Pluto: 
-
-** Husk å trykk enter** 
+Etter å ha startet Julia må du skrive inn følgende kode for å installere pakkene MAT og Plots: 
 
 ```{code-cell}
 :tags: [remove-output]
 using Pkg;
-Pkg.add(["MAT", "Pluto"])
+Pkg.add(["MAT", "Plots"])
 ```
+**Husk å trykk enter** 
 
 Lykke til med programmeringen i Julia!
 

@@ -12,7 +12,7 @@
 
 ## Bygge bok og publisere bok til Github Pages
 
-* Kjøre kommando: jupyter-book clean .
+* Kjøre kommando (muligens to ganger): jupyter-book clean --all .
 * Kjøre kommandoen for å bygge boka: jupyter-book build --all . 
     * Hvis du ønsker å se på nettsiden før du publiserer til Github så kan du gå inn i _build/html/index.html i nettleseren
 * For å publisere til Github Pages: ghp-import -n -p -f ./_build/html 

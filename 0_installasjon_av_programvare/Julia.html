@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -424,14 +424,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-du-starter">Før du starter</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-du-starter">Før du starter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-windows">Installasjon på Windows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac">Installasjon på Mac</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel">Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-intel">Installasjon på Mac (Intel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-apple-silicon">Installasjon på Mac (Apple Silicon)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-windows">Installasjon på Windows</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-intel">Installasjon på Mac (Intel)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-apple-silicon">Installasjon på Mac (Apple Silicon)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etter-installasjon">Etter installasjon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etter-installasjonen-av-julia">Etter installasjonen av Julia</a></li>
 </ul>
             </nav>
         </div>
@@ -448,22 +449,13 @@ document.write(`
 <p>Denne guiden vil hjelpe deg med å installere Julia på din PC, enten du bruker Windows eller Mac.</p>
 <section id="for-du-starter">
 <h2>Før du starter<a class="headerlink" href="#for-du-starter" title="Link to this heading">#</a></h2>
-<p>Før du begynner installasjonen, er det viktig å vite hvilken type datamaskin du har. Hvis du bruker en Mac, må du finne ut om den er basert på Apple Silicon eller Intel.</p>
-<section id="hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel">
-<h3>Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:<a class="headerlink" href="#hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Klikk på Apple-ikonet øverst til venstre på skjermen.</p></li>
-<li><p>Velg “Om denne Macen”.</p></li>
-<li><p>Under “Oversikt” vil du se en “Prosessor” eller “Chip”-detalj. Hvis det står “Intel”, har du en Intel-basert Mac. Hvis det står “Apple M1” eller lignende, har du en Apple Silicon-basert Mac.</p></li>
-</ol>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/m1mac.png"><img alt="m1mac" class="bg-primary mb-1 align-center" src="../_images/m1mac.png" style="width: 400px;" /></a>
-</section>
+<p>Før du begynner installasjonen, er det viktig å vite hva slags type datamaskin du har.</p>
 </section>
 <section id="installasjon-pa-windows">
 <h2>Installasjon på Windows<a class="headerlink" href="#installasjon-pa-windows" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/">Julia Downloads</a></p></li>
-<li><p>Under “Current stable release” klikk på “Windows” og last ned den anbefalte versjonen for ditt system (vanligvis 64-bit).</p></li>
+<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/#current_stable_release">Julia Downloads</a></p></li>
+<li><p>Under “Current stable release” klikk på “Windows” og last ned <span style="color:blue;">installer</span>-filen for ditt system (<strong>som normalt er 64-bit</strong>).</p></li>
 </ol>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/julia_windows_64bit.png"><img alt="julia_windows64bit" class="bg-primary mb-1 align-center" src="../_images/julia_windows_64bit.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="3">
@@ -474,37 +466,50 @@ document.write(`
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/julia_installasjon_windows_1.png"><img alt="julia_windows_1" class="bg-primary mb-1 align-right" src="../_images/julia_installasjon_windows_1.png" style="width: 400px;" /></a>
 </div>
 </section>
-<section id="installasjon-pa-mac-intel">
-<h2>Installasjon på Mac (Intel)<a class="headerlink" href="#installasjon-pa-mac-intel" title="Link to this heading">#</a></h2>
+<section id="installasjon-pa-mac">
+<h2>Installasjon på Mac<a class="headerlink" href="#installasjon-pa-mac" title="Link to this heading">#</a></h2>
+<p><strong>Hvis</strong> du bruker en <strong>Mac</strong>, må du <strong>sjekke om</strong> den er basert på <strong>Apple Silicon</strong> eller <strong>Intel</strong>.</p>
+<section id="hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel">
+<h3>Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:<a class="headerlink" href="#hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/">Julia Downloads</a></p></li>
-<li><p>Under “Current stable release” klikk på “macOS” og last ned den anbefalte versjonen for Intel Macs.</p></li>
+<li><p>Klikk på Apple-ikonet øverst til venstre på skjermen.</p></li>
+<li><p>Velg “Om denne Macen”.</p></li>
+<li><p>Under “Oversikt” vil du se en “Prosessor” eller “Chip”-detalj. Hvis det står “Intel”, har du en Intel-basert Mac. Hvis det står “Apple M1” eller lignende, har du en Apple Silicon-basert Mac.</p></li>
+</ol>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/m1mac.png"><img alt="m1mac" class="bg-primary mb-1 align-center" src="../_images/m1mac.png" style="width: 400px;" /></a>
+</section>
+<section id="installasjon-pa-mac-intel">
+<h3>Installasjon på Mac (Intel)<a class="headerlink" href="#installasjon-pa-mac-intel" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/#current_stable_release">Julia Downloads</a></p></li>
+<li><p>Under “Current stable release” klikk på “macOS” og last ned <span style="color:blue;">.dmg</span>-filen for den <strong>anbefalte versjonen for Intel Macs</strong>.</p></li>
 <li><p>Åpne den nedlastede .dmg-filen.</p></li>
 <li><p>Dra Julia-ikonet til Applications-mappen.</p></li>
 </ol>
 </section>
 <section id="installasjon-pa-mac-apple-silicon">
-<h2>Installasjon på Mac (Apple Silicon)<a class="headerlink" href="#installasjon-pa-mac-apple-silicon" title="Link to this heading">#</a></h2>
+<h3>Installasjon på Mac (Apple Silicon)<a class="headerlink" href="#installasjon-pa-mac-apple-silicon" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/">Julia Downloads</a></p></li>
-<li><p>Under “Current stable release” klikk på “macOS” og last ned den anbefalte versjonen for Apple Silicon Macs.</p></li>
+<li><p>Gå til Julia’s offisielle nedlastingsside: <a class="reference external" href="https://julialang.org/downloads/#current_stable_release">Julia Downloads</a></p></li>
+<li><p>Under “Current stable release” klikk på “macOS” og last ned <span style="color:blue;">.dmg</span>-filen for den <strong>anbefalte versjonen for Apple Silicon Macs</strong>.</p></li>
 <li><p>Åpne den nedlastede .dmg-filen.</p></li>
 <li><p>Dra Julia-ikonet til Applications-mappen.</p></li>
 </ol>
 </section>
-<section id="etter-installasjon">
-<h2>Etter installasjon<a class="headerlink" href="#etter-installasjon" title="Link to this heading">#</a></h2>
-<p>Når du har installert Julia, kan du starte programmet fra startmenyen (Windows) eller Applications-mappen (Mac). Du må også følge guiden for å installere Visual Studio Code og Julia Extensionen.</p>
-<p>Etter å ha startet programmet må du skrive inn følgende kode for å installere pakkene MAT og Pluto:</p>
-<p>** Husk å trykk enter**</p>
+</section>
+<section id="etter-installasjonen-av-julia">
+<h2>Etter installasjonen av Julia<a class="headerlink" href="#etter-installasjonen-av-julia" title="Link to this heading">#</a></h2>
+<p>Når du har installert Julia, kan du starte programmet fra startmenyen (Windows) eller Applications-mappen (Mac). Du må også følge guiden nedenfor for å installere <strong>Visual Studio Code</strong> (VSC) med <strong>Julia</strong> Extensionen som gjør at du enkelt kan behandle og kjøre Julia-programmer som du leser inn og/eller skriver i VSC.</p>
+<p>Etter å ha startet Julia må du skrive inn følgende kode for å installere pakkene MAT og Plots:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span><span class="p">;</span>
-<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;MAT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pluto&quot;</span><span class="p">])</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="s">&quot;MAT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Plots&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Husk å trykk enter</strong></p>
 <p>Lykke til med programmeringen i Julia!</p>
 <blockquote>
 <div><p>HUSK: Visual Studio Code guiden må også følges!</p>
@@ -576,14 +581,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-du-starter">Før du starter</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-du-starter">Før du starter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-windows">Installasjon på Windows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac">Installasjon på Mac</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hvordan-sjekke-om-din-mac-er-basert-pa-apple-silicon-eller-intel">Hvordan sjekke om din Mac er basert på Apple Silicon eller Intel:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-intel">Installasjon på Mac (Intel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-apple-silicon">Installasjon på Mac (Apple Silicon)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-windows">Installasjon på Windows</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-intel">Installasjon på Mac (Intel)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installasjon-pa-mac-apple-silicon">Installasjon på Mac (Apple Silicon)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etter-installasjon">Etter installasjon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etter-installasjonen-av-julia">Etter installasjonen av Julia</a></li>
 </ul>
   </nav></div>
 
