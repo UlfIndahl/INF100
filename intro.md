@@ -14,9 +14,9 @@ Denne boken vil inneholde pensummateriale, veiledninger, og mer.
 
 ### Programvare
 
-* Julia (1.10.5) behøves med pakkene *MAT* og *Pluto*
-	* Se Julia installasjon siden for en veiledning
-* Visual Studio Code med Julia extensions
+* Julia (1.10.5) 
+	* Se Julia installasjon siden nedenfor for en veiledning
+* Visual Studio Code med Julia extensions (se nedenfor)
 
 ### Nyttige lenker
 
