@@ -27,13 +27,13 @@ Denne boken vil inneholde pensummateriale, veiledninger, og mer.
 
 ### AI verktøy
 
-Studenter kan bruke AI verktøy til å stille spørsmål, utforske emner i dybden, og få umiddelbar tilbakemelding på komplekse problemstillinger. De kan også hjelpe med å løse oppgaver ved å gi veiledning og forslag til ressurser. Imidlertid er det viktig å merke seg at mens AI kan være en verdifull ressurs for læring, bør den ikke erstatte tradisjonelle læringsmetoder, spesielt når det kommer til skriftlige eksamener. Studenter bør fortsatt fokusere på å utvikle sin egen kritiske tenkning og forståelse av emnet.
+Du kan gjerne bruke AI verktøy til å stille spørsmål, utforske temaer i dybden. Slike verktøy kan også hjelpe med å løse oppgaver ved å gi veiledning og forslag til ressurser. Det er imidlertid viktig å huske på at selv om AI kan være en verdifull ressurs for læring, er det ikke noen fullgod erstatning. Gode allmennkunnskaper og kritisk tenkning er en forutsetning for god læring i emnet med eller uten AI-verktøy. __HUSK:__ Det er skriftlig eksamen i kurset uten tilgang til nett og elektroniske hjelpemidler. 
 
 * [ChatGPT](https://chatgpt.com/) 
 * [Gemini](https://gemini.google.com/app)
-* [Copilot]](https://copilot.microsoft.com/)
+* [Copilot](https://copilot.microsoft.com/)
 
 
-> **_Bemerk:_** Ingen av disse er obligatoriske å bruke, da de kan bryte med GDPR og kreve deling av personlig informasjon med en tredjepart. Imidlertid har student-e-poster vanligvis en Microsoft-konto knyttet til seg, dvs. tilgang til Bing-chat med minimal innsats.
+> **_Merknad:_** Ingen av disse er obligatoriske å bruke, da de kan bryte med GDPR og kreve deling av personlig informasjon med en tredjepart. Imidlertid har student-e-poster vanligvis en Microsoft-konto knyttet til seg, dvs. tilgang til Bing-chat med minimal innsats.
 
  
